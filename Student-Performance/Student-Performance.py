@@ -41,4 +41,8 @@ print("Passing: %d out of %d (%.2f%%)" % (np.sum(d_pass), len(d_pass), 100*float
 t = tree.DecisionTreeClassifier(criterion="entropy", max_depth=5)
 t = t.fit(d_train_att, d_train_pass)
 
+tree.export_graphviz(t, out_file='student-performance.dot', label="all", impurity=False, proportion=True,
+                     feature_names=list(d_train_att), class_names=["fail", "pass"], filled=True, rounded=True)
+
+
 print(d)
