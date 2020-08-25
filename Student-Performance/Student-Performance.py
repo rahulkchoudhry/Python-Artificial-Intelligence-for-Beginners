@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from sklearn import tree
 
 d = pd.read_csv('student-por.csv', sep=';')
 
@@ -35,5 +36,9 @@ d_pass = d['pass']
 
 # calculate number of passing students in the data set
 print("Passing: %d out of %d (%.2f%%)" % (np.sum(d_pass), len(d_pass), 100*float(np.sum(d_pass))/len(d_pass)))
+
+# Create a decision tree classifier
+t = tree.DecisionTreeClassifier(criterion="entropy", max_depth=5)
+t = t.fit(d_train_att, d_train_pass)
 
 print(d)
